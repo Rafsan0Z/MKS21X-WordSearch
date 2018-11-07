@@ -15,7 +15,7 @@ public class WordSearch{
     private void clear(){
       for(int i = 0; i < data.length; i++) {
         for(int j = 0; i < data[i].length; j++) {
-          data[i][j] = "_";
+          data[i][j] = '_';
         }
       }
     }
@@ -25,6 +25,14 @@ public class WordSearch{
      *separated by newlines.
      */
     public String toString(){
+      Stirng result = "";
+      for(int i = 0; i < data.length; i++) {
+        for(int j = 0; i < data[i].length; j++) {
+          if(j = data[i].length - 1) { result += data[i][j] + "\n";}
+          else {result += data[i][j] + ' ';}
+        }
+      }
+      return result;
     }
 
 
