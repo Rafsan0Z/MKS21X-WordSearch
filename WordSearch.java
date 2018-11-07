@@ -7,6 +7,12 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
     public WordSearch(int rows,int cols){
+      data = char[rows][cols];
+      for(int i = 0; i < data.length; i++) {
+        for(int j = 0; i < data[i].length; j++) {
+          data[i][j] = "_";
+        }
+      }
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
