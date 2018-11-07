@@ -8,15 +8,16 @@ public class WordSearch{
      */
     public WordSearch(int rows,int cols){
       data = char[rows][cols];
+      clear();
+    }
+
+    /**Set all values in the WordSearch to underscores'_'*/
+    private void clear(){
       for(int i = 0; i < data.length; i++) {
         for(int j = 0; i < data[i].length; j++) {
           data[i][j] = "_";
         }
       }
-    }
-
-    /**Set all values in the WordSearch to underscores'_'*/
-    private void clear(){
     }
 
     /**Each row is a new line, there is a space between each letter
