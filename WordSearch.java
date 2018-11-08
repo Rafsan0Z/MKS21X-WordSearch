@@ -7,7 +7,7 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
     public WordSearch(int rows,int cols){
-      data = char[rows][cols];
+      data = new char[rows][cols];
       clear();
     }
 
@@ -25,10 +25,10 @@ public class WordSearch{
      *separated by newlines.
      */
     public String toString(){
-      Stirng result = "";
+      String result = "";
       for(int i = 0; i < data.length; i++) {
         for(int j = 0; i < data[i].length; j++) {
-          if(j = data[i].length - 1) { result += data[i][j] + "\n";}
+          if(j == data[i].length - 1) { result += data[i][j] + "\n";}
           else {result += data[i][j] + ' ';}
         }
       }
@@ -49,15 +49,19 @@ public class WordSearch{
      */
     public boolean addWordHorizontal(String word,int row, int col){
       int length = word.length();
-      int i = row;
       int index = 0;
-      for(int j = col; j < data[i].length + length; j++) {
+      if(col + length + 1 > data[row].length) {return false;}
+      for(int j = col; j < data[row].length; j++) {
         char letter = word.charAt(index);
-        data[i][j] = letter;
-        index--;
-        word.replaceFirst(letter, '');
+        index++;
+        if(data[row][j] != letter && data[row][j] != '_') {return false;}
       }
-      if(word.length > 0) {return false;}
+      index = 0;
+      for(int j = col; j < data[row].length; j++) {
+        char letter = word.charAt(index);
+        data[row][j] = letter;
+        index++;
+      }
       return true;
     }
 
