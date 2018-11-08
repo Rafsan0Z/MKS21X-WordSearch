@@ -14,7 +14,7 @@ public class WordSearch{
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for(int i = 0; i < data.length; i++) {
-        for(int j = 0; i < data[i].length; j++) {
+        for(int j = 0; j < data[i].length; j++) {
           data[i][j] = '_';
         }
       }
@@ -25,14 +25,22 @@ public class WordSearch{
      *separated by newlines.
      */
     public String toString(){
-      String result = "";
-      for(int i = 0; i < data.length; i++) {
-        for(int j = 0; i < data[i].length; j++) {
-          if(j == data[i].length - 1) { result += data[i][j] + "\n";}
-          else {result += data[i][j] + ' ';}
-        }
+    String result = "";
+  for (int i = 0; i < data.length ; i++) {
+    for(int j = 0; j < data[i].length ; j++) {
+      if ( j == 0 ) {
+        result += "{";
       }
-      return result;
+      if ( j == data[i].length - 1) {
+        result += data[i][j];
+        result += "} \n";
+      }
+      else{
+        result += data[i][j] + ",";
+      }
+    }
+  }
+  return result;
     }
 
 
@@ -50,14 +58,14 @@ public class WordSearch{
     public boolean addWordHorizontal(String word,int row, int col){
       int Length = word.length();
       int index = 0;
-      if(col + Length + 1 > data[row].length) {return false;}
-      for(int j = col; j < data[row].length; j++) {
+      if(col + Length > data[row].length) {return false;}
+      for(int j = col; j < Length + col; j++) {
         char letter = word.charAt(index);
         index++;
         if(data[row][j] != letter && data[row][j] != '_') {return false;}
       }
       index = 0;
-      for(int j = col; j < data[row].length; j++) {
+      for(int j = col; j < Length + col; j++) {
         char letter = word.charAt(index);
         data[row][j] = letter;
         index++;
@@ -79,14 +87,14 @@ public class WordSearch{
     public boolean addWordVertical(String word,int row, int col){
       int Length = word.length();
       int index = 0;
-      if(row + 1 + Length > data.length ) {return false;}
-      for(int i = row; i < data.length; i++) {
+      if(row + Length > data.length ) {return false;}
+      for(int i = row; i < Length + row; i++) {
         char letter = word.charAt(index);
         index++;
         if(data[i][col] != letter && data[i][col] != '_') {return false;}
       }
       index = 0;
-      for(int i = row; i <data.length; i++) {
+      for(int i = row; i < Length + row; i++) {
         char letter = word.charAt(index);
         data[i][col] = letter;
         index++;
