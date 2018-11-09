@@ -101,4 +101,29 @@ public class WordSearch{
       }
       return true;
     }
+
+    public boolean addWordDiagonal(String word, int row, int col) {
+     int Length = word.length();
+     int index = 0;
+     int i = col;
+     if(row + Length > data.length) {return false;}
+     for(int j = row; j < row + Length; j++) {
+       char letter = word.charAt(index);
+       index++;
+       if(data[j][i] != letter && data[i][j] != '_') {
+         return false;
+       }
+       i++;
+     }
+     i = col;
+     index = 0;
+     for(int j = row; j < Length + row; j++) {
+       char letter = word.charAt(index);
+       data[i][j] = letter;
+       i++;
+       index++;
+     }
+     return true;
+   }
+
 }
