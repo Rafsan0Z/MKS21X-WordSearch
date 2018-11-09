@@ -1,8 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.file;
-import java.io.filenotfoundexception;
+import java.io.File;
+import java.io.Filenotfoundexception;
 public class WordSearch{
     private char[][]data;
     private int seed;
@@ -15,9 +15,15 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
-    public WordSearch(int rows,int cols){
+    public WordSearch(int rows,int cols, String fileName){
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      while(in.hasNext()) {
+        String word = in.next();
+        wordsToAdd.add(word);
+      }
       data = new char[rows][cols];
-      clear();
+//      addAllWords();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
