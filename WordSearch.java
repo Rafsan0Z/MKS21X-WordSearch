@@ -1,5 +1,9 @@
 public class WordSearch{
     private char[][]data;
+    private int seed;
+    private Random randgen;
+    private ArrayList<String>wordsToAdd;
+    private ArrayList<String>wordsAdded;
 
     /**Initialize the grid to the size specified
      *and fill all of the positions with '_'
