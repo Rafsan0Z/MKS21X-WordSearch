@@ -110,7 +110,7 @@ public class WordSearch{
      for(int j = row; j < row + Length; j++) {
        char letter = word.charAt(index);
        index++;
-       if(data[j][i] != letter && data[i][j] != '_') {
+       if(data[j][i] != letter && data[j][i] != '_') {
          return false;
        }
        i++;
@@ -119,7 +119,7 @@ public class WordSearch{
      index = 0;
      for(int j = row; j < Length + row; j++) {
        char letter = word.charAt(index);
-       data[i][j] = letter;
+       data[j][i] = letter;
        i++;
        index++;
      }
