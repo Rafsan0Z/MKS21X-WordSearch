@@ -154,6 +154,15 @@ public class WordSearch{
        currentrow++;
        currentcol++;
      }
+     currentcol = col;
+     currentrow = row;
+     for(int j = 0; j < Length; j++) {
+       char letter = word.charAt(j);
+       data[currentrow][currentcol] = letter;
+       currentcol++;
+       currentrow++;
+     }
+     return true;
    }
 
 }
