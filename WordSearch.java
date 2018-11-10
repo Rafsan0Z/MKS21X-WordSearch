@@ -147,10 +147,10 @@ public class WordSearch{
      int colendpoint = (Length-1)*colIncrement;
      int currentrow = row;
      int currentcol = col;
-     if(rowendpoint > rows || colendpoint > cols) {return false;}
-     for(int i < 0; i < length; i++) {
+     if(rowendpoint > data.length || colendpoint > data[0].length) {return false;}
+     for(int i = 0 ; i < Length; i++) {
        char letter = word.charAt(i);
-       if(data[currentrow][currentcol] != letter && data[currentrow][currentcol] = '_') {return false;}
+       if(data[currentrow][currentcol] != letter && data[currentrow][currentcol] != '_') {return false;}
        currentrow++;
        currentcol++;
      }
