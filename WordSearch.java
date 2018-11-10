@@ -23,6 +23,21 @@ public class WordSearch{
         wordsToAdd.add(word);
       }
       data = new char[rows][cols];
+      Random rand = new Random();
+      int Randseed = rand.nextInt();
+      Random randgen = new Random(Randseed);
+//      addAllWords();
+    }
+
+    public WordSearch(int rows, int cols, String fileName, int Randseed) {
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      while(in.hasNext()) {
+        String word = in.next();
+        wordsToAdd.add(word);
+      }
+      data = new char[rows][cols];
+      Random randgen = new Random(Randseed);
 //      addAllWords();
     }
 
@@ -164,6 +179,21 @@ public class WordSearch{
        currentrow++;
      }
      return true;
+   }
+
+   public boolean addAllWords() {
+     int row = 1;
+     int col = 1;
+     for(int i = 0; i < wordsToAdd.size(); i++) {
+       Random num1 = new Random(randgen.nextInt());
+       Random num2 = new Random(randgen.nextInt());
+       int rowIncrement = num1.nextInt();
+       int colIncrement = num2.nextInt();
+       String word = wordsToAdd.get(i);
+       if(addWord(word,row,col,rowIncrement,colIncrement)) {}
+     }
+
+
    }
 
 }
