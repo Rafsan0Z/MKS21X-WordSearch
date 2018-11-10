@@ -178,6 +178,8 @@ public class WordSearch{
        currentcol++;
        currentrow++;
      }
+     wordsToAdd.remove(word);
+     wordsAdded.add(word);
      return true;
    }
 
