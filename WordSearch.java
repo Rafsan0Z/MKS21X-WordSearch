@@ -44,14 +44,14 @@ public class WordSearch{
   for (int i = 0; i < data.length ; i++) {
     for(int j = 0; j < data[i].length ; j++) {
       if ( j == 0 ) {
-        result += "{";
+        result += "|";
       }
       if ( j == data[i].length - 1) {
         result += data[i][j];
-        result += "} \n";
+        result += "| \n";
       }
       else{
-        result += data[i][j] + ",";
+        result += data[i][j];
       }
     }
   }
