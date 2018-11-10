@@ -186,16 +186,17 @@ public class WordSearch{
    public boolean addAllWords() {
      int row = 1;
      int col = 1;
+     int count = 0;
      for(int i = 0; i < wordsToAdd.size(); i++) {
        Random num1 = new Random(randgen.nextInt());
        Random num2 = new Random(randgen.nextInt());
        int rowIncrement = num1.nextInt();
        int colIncrement = num2.nextInt();
        String word = wordsToAdd.get(i);
-       if(addWord(word,row,col,rowIncrement,colIncrement)) {}
+       if(addWord(word,row,col,rowIncrement,colIncrement)) {count++;}
      }
-
-
+     if(count!= wordsAdded.size()) {return false;}
+     return true;
    }
 
 }
