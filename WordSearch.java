@@ -141,4 +141,19 @@ public class WordSearch{
      return true;
    }
 
+   public boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
+     int Length = word.length();
+     int rowendpoint = (Length-1)*rowIncrement;
+     int colendpoint = (Length-1)*colIncrement;
+     int currentrow = row;
+     int currentcol = col;
+     if(rowendpoint > rows || colendpoint > cols) {return false;}
+     for(int i < 0; i < length; i++) {
+       char letter = word.charAt(i);
+       if(data[currentrow][currentcol] != letter && data[currentrow][currentcol] = '_') {return false;}
+       currentrow++;
+       currentcol++;
+     }
+   }
+
 }
