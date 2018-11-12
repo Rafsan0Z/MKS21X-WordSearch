@@ -15,7 +15,11 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
-    public void wordDatabase(String fileName) {
+    public WordSearch(int rows,int cols, String fileName){
+      data = new char[rows][cols];
+      clear();
+      wordsAdded = new ArrayList<>();
+      wordsToAdd = new ArrayList<>();
       try {
         File f = new File(fileName);
         Scanner in = new Scanner(f);
@@ -27,14 +31,6 @@ public class WordSearch{
         System.out.println("File: " + fileName + " is not created!");
         System.exit(1);
       }
-    }
-
-    public WordSearch(int rows,int cols, String fileName){
-      data = new char[rows][cols];
-      clear();
-      wordsAdded = new ArrayList<>();
-      wordsToAdd = new ArrayList<>();
-      wordDatabase(fileName);
       randgen = new Random();
       addAllWords();
     }
@@ -44,7 +40,17 @@ public class WordSearch{
       clear();
       wordsAdded = new ArrayList<>();
       wordsToAdd = new ArrayList<>();
-      wordDatabase(fileName);
+      try {
+        File f = new File(fileName);
+        Scanner in = new Scanner(f);
+        while(in.hasNext()) {
+          String piece = in.nextLine();
+          wordsToAdd.add(piece);
+        }
+      } catch(FileNotFoundException e) {
+        System.out.println("File: " + fileName + " is not created!");
+        System.exit(1);
+      }
       randgen = new Random(Randseed);
       addAllWords();
     }
@@ -164,8 +170,9 @@ public class WordSearch{
      return true;
    }
 
-   public boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
+   private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
      if(rowIncrement == 0 && colIncrement == 0) {return false;}
+     if(word == "") {return false;}
      int Length = word.length();
      int rowendpoint = (Length-1)*rowIncrement;
      int colendpoint = (Length-1)*colIncrement;
@@ -191,7 +198,7 @@ public class WordSearch{
      return true;
    }
 
-   public boolean addAllWords() {
+   private void addAllWords() {
      int colLength = data[0].length;
      int rowLength = data.length;
      int row = 0;
@@ -211,7 +218,6 @@ public class WordSearch{
        }
        wordsAdded.add(word);
      }
-     return false;
    }
 
 
