@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
-import java.io.Filenotfoundexception;
+import java.io.FileNotFoundException;
 public class WordSearch{
     private char[][]data;
     private int seed;
@@ -16,17 +16,13 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
     public WordSearch(int rows,int cols, String fileName){
-      File f = new File(fileName);
-      Scanner in = new Scanner(f);
-      while(in.hasNext()) {
-        String word = in.next();
-        wordsToAdd.add(word);
-      }
       data = new char[rows][cols];
-      Random rand = new Random();
-      int Randseed = rand.nextInt();
-      Random randgen = new Random(Randseed);
-//      addAllWords();
+      clear();
+      wordsAdded = new ArrayList<>();
+      wordsToAdd = new ArrayList<>();
+      wordDatabase(fileName);
+      randgen = new Random();
+      addAllWords();
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
