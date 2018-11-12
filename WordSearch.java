@@ -15,6 +15,20 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
+    public void wordDatabase(String fileName) {
+      try {
+        File f = new File(fileName);
+        Scanner in = new Scanner(f);
+        while(in.hasNext()) {
+          String piece = in.nextLine();
+          wordsToAdd.add(piece);
+        }
+      } catch(FileNotFoundException e) {
+        System.out.println("File: " + fileName + " is not created!");
+        System.exit(1);
+      }
+    }
+
     public WordSearch(int rows,int cols, String fileName){
       data = new char[rows][cols];
       clear();
