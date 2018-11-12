@@ -192,11 +192,26 @@ public class WordSearch{
    }
 
    public boolean addAllWords() {
+     int colLength = data[0].length;
+     int rowLength = data.length;
      int row = 0;
      int col = 0;
      int count = 0;
      int colIncrement = -1;
      int rowIncrement = -1;
+     while(wordsToAdd.size() > 0) {
+       int index = Math.abs(randgen.nextInt() % wordsToAdd.size());
+       while(!(addWord(wordsToAdd.get(index),row,col,colIncrement,rowIncrement)) && count < 1000) {
+         colIncrement = randgen.nextInt() % 2;
+         rowIncrement = randgen.nextInt() % 2;
+         col = Math.abs(randgen.nextInt() % colLength);
+         row = Math.abs(randgen.nextInt() % rowLength);
+         count++;
+       }
+       String word = wordsToAdd.get(index);
+       wordsAdded.add(word);
+     }
+     return false;
    }
 
 
