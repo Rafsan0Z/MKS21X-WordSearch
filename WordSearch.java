@@ -201,14 +201,14 @@ public class WordSearch{
      int rowIncrement = -1;
      while(wordsToAdd.size() > 0) {
        int index = Math.abs(randgen.nextInt() % wordsToAdd.size());
-       while(!(addWord(wordsToAdd.get(index),row,col,colIncrement,rowIncrement)) && count < 1000) {
+       String word = wordsToAdd.get(index);
+       while(!(addWord(word,row,col,colIncrement,rowIncrement)) && count < 1000) {
          colIncrement = randgen.nextInt() % 2;
          rowIncrement = randgen.nextInt() % 2;
          col = Math.abs(randgen.nextInt() % colLength);
          row = Math.abs(randgen.nextInt() % rowLength);
          count++;
        }
-       String word = wordsToAdd.get(index);
        wordsAdded.add(word);
      }
      return false;
