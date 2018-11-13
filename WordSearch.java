@@ -17,41 +17,39 @@ public class WordSearch{
      */
     public WordSearch(int rows,int cols, String fileName){
       data = new char[rows][cols];
-      clear();
       wordsAdded = new ArrayList<>();
       wordsToAdd = new ArrayList<>();
       try {
         File f = new File(fileName);
         Scanner in = new Scanner(f);
-        while(in.hasNext()) {
-          String piece = in.nextLine();
-          wordsToAdd.add(piece);
+        while(in.hasNext()) {	
+          String word = in.nextLine();
+          wordsToAdd.add(word);
         }
       } catch(FileNotFoundException e) {
-        System.out.println("File: " + fileName + " is not created!");
-        System.exit(1);
+        System.out.println("File: " + fileName + " does not exist!");
       }
       randgen = new Random();
+      clear();
       addAllWords();
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
       data = new char[rows][cols];
-      clear();
       wordsAdded = new ArrayList<>();
       wordsToAdd = new ArrayList<>();
       try {
         File f = new File(fileName);
         Scanner in = new Scanner(f);
         while(in.hasNext()) {
-          String piece = in.nextLine();
-          wordsToAdd.add(piece);
+          String word = in.nextLine();
+          wordsToAdd.add(word);
         }
       } catch(FileNotFoundException e) {
-        System.out.println("File: " + fileName + " is not created!");
-        System.exit(1);
+        System.out.println("File: " + fileName + " does not exist!");
       }
       randgen = new Random(Randseed);
+      clear();
       addAllWords();
     }
 
@@ -123,18 +121,6 @@ public class WordSearch{
      int count = 0;
      int colIncrement = -1;
      int rowIncrement = -1;
-     while(wordsToAdd.size() > 0) {
-       int index = Math.abs(randgen.nextInt() % wordsToAdd.size());
-       String word = wordsToAdd.get(index);
-       while(!(addWord(word,row,col,colIncrement,rowIncrement)) && count < 1000) {
-         colIncrement = randgen.nextInt() % 2;
-         rowIncrement = randgen.nextInt() % 2;
-         col = Math.abs(randgen.nextInt() % colLength);
-         row = Math.abs(randgen.nextInt() % rowLength);
-         count++;
-       }
-       wordsAdded.add(word);
-     }
    }
 
 
