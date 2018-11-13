@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class WordSearch{
     private char[][]data;
-    private int seed;
+    private int seed;	
     private Random randgen;
     private ArrayList<String>wordsToAdd;
     private ArrayList<String>wordsAdded;
@@ -121,6 +121,13 @@ public class WordSearch{
      int count = 0;
      int colIncrement = -1;
      int rowIncrement = -1;
+     int amountofwords = wordsToAdd.size();
+    for(int i = 0; i < amountofwords; i++) {
+      String word = wordsToAdd.get(0);
+      if(addWord(word, row, col, rowIncrement, colIncrement) && count < 1000) {
+          count++;
+      }
+     }
    }
 
 
