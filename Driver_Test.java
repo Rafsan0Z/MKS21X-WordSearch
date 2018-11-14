@@ -1,6 +1,16 @@
+import java.util.File;
+import java.util.Scanner;
 public class Driver_Test {
 
   public static void main(String[] args) {
+
+    if(args[2] == 0) {System.out.println("Please specify the file!");} // When there is no file included
+    try{
+      File f = new File(args[2]);
+      Scanner in = new Scanner(f);
+    } catch(IllegalArgumentException e) {
+      System.out.println("File: " + args[2] + " not found!");         // When the file is specified but does not exists
+    }
 
     WordSearch WSe = new WordSearch(10,14,"words.txt");
 
