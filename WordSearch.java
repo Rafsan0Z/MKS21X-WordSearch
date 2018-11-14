@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class WordSearch{
     private char[][]data;
+    private char[][]alphabet;
     private int seed;
     private Random randgen;
     private ArrayList<String>wordsToAdd;
@@ -15,12 +16,23 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
-    public void VarifyFile(String fileName) {
+    private void VarifyFile(String fileName) {
       try{
         File file = new File(fileName);
         Scanner in = new Scanner(file);
       } catch(IllegalArgumentException e) {
         System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
+      }
+    }
+
+    private void RandomLetters() {
+      for(int i = 0; i < data.length; i++) {
+        for(int j = 0; j < data[0].length; j++) {
+          if(data[i][j] = '_') {
+            int place = ListIndex(27);
+            data[i][j] = alphabet(place);
+          }
+        }
       }
     }
 
@@ -32,6 +44,7 @@ public class WordSearch{
       randgen = new Random();
       addAllWords();
       if(!solution) {
+        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         RandomLetters();
       }
     }
