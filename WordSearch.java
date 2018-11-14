@@ -16,9 +16,13 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
     public WordSearch(int rows,int cols, String fileName){
+      data = new char[rows][cols];
+      clear();
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
+      data = new char[rows][cols];
+      clear();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
