@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class WordSearch{
     private char[][]data;
-    private int seed;	
+    private int seed;
     private Random randgen;
     private ArrayList<String>wordsToAdd;
     private ArrayList<String>wordsAdded;
@@ -16,41 +16,9 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
     public WordSearch(int rows,int cols, String fileName){
-      data = new char[rows][cols];
-      wordsAdded = new ArrayList<>();
-      wordsToAdd = new ArrayList<>();
-      try {
-        File f = new File(fileName);
-        Scanner in = new Scanner(f);
-        while(in.hasNext()) {	
-          String word = in.nextLine();
-          wordsToAdd.add(word);
-        }
-      } catch(FileNotFoundException e) {
-        System.out.println("File: " + fileName + " does not exist!");
-      }
-      randgen = new Random();
-      clear();
-      addAllWords();
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
-      data = new char[rows][cols];
-      wordsAdded = new ArrayList<>();
-      wordsToAdd = new ArrayList<>();
-      try {
-        File f = new File(fileName);
-        Scanner in = new Scanner(f);
-        while(in.hasNext()) {
-          String word = in.nextLine();
-          wordsToAdd.add(word);
-        }
-      } catch(FileNotFoundException e) {
-        System.out.println("File: " + fileName + " does not exist!");
-      }
-      randgen = new Random(Randseed);
-      clear();
-      addAllWords();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -114,20 +82,6 @@ public class WordSearch{
    }
 
    private void addAllWords() {
-     int colLength = data[0].length;
-     int rowLength = data.length;
-     int row = 0;
-     int col = 0;
-     int count = 0;
-     int colIncrement = -1;
-     int rowIncrement = -1;
-     int amountofwords = wordsToAdd.size();
-    for(int i = 0; i < amountofwords; i++) {
-      String word = wordsToAdd.get(0);
-      if(addWord(word, row, col, rowIncrement, colIncrement) && count < 1000) {
-          count++;
-      }
-     }
    }
 
 
