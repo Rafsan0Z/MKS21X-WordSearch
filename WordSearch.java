@@ -18,11 +18,23 @@ public class WordSearch{
     public WordSearch(int rows,int cols, String fileName){
       data = new char[rows][cols];
       clear();
+      try{
+        File file = new File(fileName);
+        Scanner in = new Scanner(file);
+      } catch(IllegalArgumentException e) {
+        System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
+      }
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
       data = new char[rows][cols];
       clear();
+      try{
+        File file = new File(fileName);
+        Scanner in = new Scanner(fileName);
+      } catch(IllegalArgumentException e) {
+        System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
+      }
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
