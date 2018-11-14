@@ -35,6 +35,8 @@ public class WordSearch{
       } catch(IllegalArgumentException e) {
         System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
       }
+      seed = Randseed;
+      randgen = new Random(seed);
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
