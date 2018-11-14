@@ -7,6 +7,7 @@ public class WordSearch{
     private char[][]data;
     private char[][]alphabet;
     private int seed;
+    private int[]info = new int[2];
     private Random randgen;
     private ArrayList<String>wordsToAdd;
     private ArrayList<String>wordsAdded;
@@ -121,15 +122,18 @@ public class WordSearch{
      return num;
    }
 
-   private void Bestrowcol(int[] info) {}    // A method that returns the best row and col to start, to be Written!
+   private void Bestrowcol(int[] info) { // A method that returns the best row and col to start, to be Written!
 
+   }
    private void addAllWords() {
     int rowIncrement = -1;
     int colIncrement = 1;
     int Length = wordsToAdd.size();         //
     int index = ListIndex(Length);          // This should be inside of a loop
     String word = wordsToAdd.get(index);    //
-
+    Bestrowcol();
+    int row = info[0];                      // This finds the best row and col to start on
+    int col = info[1];
    }
 
 
