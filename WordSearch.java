@@ -111,10 +111,15 @@ public class WordSearch{
      return num;
    }
 
+   private void Bestrowcol(int[] info) {}    // A method that returns the best row and col to start, to be Written!
+
    private void addAllWords() {
+    int rowIncrement = -1;
+    int colIncrement = 1;
     int Length = wordsToAdd.size();         //
-    int index = ListIndex(Length);          // This should be inside of a loop!
+    int index = ListIndex(Length);          // This should be inside of a loop
     String word = wordsToAdd.get(index);    //
+
    }
 
 
