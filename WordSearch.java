@@ -24,6 +24,9 @@ public class WordSearch{
       } catch(IllegalArgumentException e) {
         System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
       }
+      Random seedrand = new Random();
+      seed = seedrand.nextInt();
+      randgen = new Random(seed);
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
