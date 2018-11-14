@@ -16,6 +16,8 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
+
+// This method checks the file that the user inputs
     private void VarifyFile(String fileName) {
       try{
         File file = new File(fileName);
@@ -25,6 +27,7 @@ public class WordSearch{
       }
     }
 
+// This method inputs random letters where are blank spaces
     private void RandomLetters() {
       for(int i = 0; i < data.length; i++) {
         for(int j = 0; j < data[0].length; j++) {
@@ -43,7 +46,7 @@ public class WordSearch{
       seed = Randseed;
       randgen = new Random();
       addAllWords();
-      if(!solution) {
+      if(!answer) {
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         RandomLetters();
       }
