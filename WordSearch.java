@@ -26,7 +26,7 @@ public class WordSearch{
       }
       Random seedrand = new Random();
       seed = seedrand.nextInt();
-      randgen = new Random(seed);
+      randgen = new Random();
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed) {
@@ -39,7 +39,7 @@ public class WordSearch{
         System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
       }
       seed = Randseed;
-      randgen = new Random(seed);
+      randgen = new Random();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -102,9 +102,21 @@ public class WordSearch{
      return true;
    }
 
+// This function randomly choses a word from the words not yet added!
+   private int ListIndex(int length) {
+     int num = 0;
+     for(int i = 0; i < length - 1; i++) {
+       num += Math.abs(randgen.nextInt() % 2);
+     }
+     return num;
+   }
+
    private void addAllWords() {
+    int Length = wordsToAdd.size();         //
+    int index = ListIndex(Length);          // This should be inside of a loop!
+    String word = wordsToAdd.get(index);    //
    }
 
 
-
+// I use tutorialsPoint to check my code before testing it in any Driver!
 }
