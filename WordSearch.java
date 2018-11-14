@@ -15,15 +15,19 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
-    public WordSearch(int rows,int cols, String fileName){
-      data = new char[rows][cols];
-      clear();
+    public void VarifyFile(String fileName) {
       try{
         File file = new File(fileName);
         Scanner in = new Scanner(file);
       } catch(IllegalArgumentException e) {
         System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
       }
+    }
+
+    public WordSearch(int rows,int cols, String fileName){
+      data = new char[rows][cols];
+      clear();
+      VarifyFile(fileName);
       Random seedrand = new Random();
       seed = seedrand.nextInt();
       randgen = new Random();
