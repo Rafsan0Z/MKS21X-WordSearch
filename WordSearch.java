@@ -40,7 +40,7 @@ public class WordSearch{
       }
     }
 
-    private void fillDatabase(fileName) {
+    private void fillDatabase(String fileName) {
       File file = new File(fileName);
       Scanner in = new Scanner(file);
       while(in.hasNext()) {
