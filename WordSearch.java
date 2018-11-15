@@ -46,6 +46,8 @@ public class WordSearch{
       VarifyFile(fileName);
       seed = Randseed;
       randgen = new Random();
+      info[0] = 0;
+      info[1] = 0;
       addAllWords();
       if(!answer) {
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
@@ -122,20 +124,29 @@ public class WordSearch{
      return num;
    }
 
-   private void Bestrowcol(int[] info) { // A method that returns the best row and col to start, to be Written!
+   private void Bestrowcol(int[] rowcol) { // A method that returns the best row and col to start, to be Written!
 
    }
    private void addAllWords() {
-    int rowIncrement = -1;
+    int rowIncrement = 1;
     int colIncrement = 1;
-    int Length = wordsToAdd.size();         //
-    int index = ListIndex(Length);          // This should be inside of a loop
-    String word = wordsToAdd.get(index);    //
-    Bestrowcol();
-    int row = info[0];                      // This finds the best row and col to start on
-    int col = info[1];
+    while(wordsToAdd.size() > 0) {
+      int Length = wordsToAdd.size();         //
+      int index = ListIndex(Length);          // This should be inside of a loop
+      String word = wordsToAdd.get(index);    //
+      for(int i = info[0]; i < data.legth; i++) {
+        for(int j = info[1]; j < data[0].length; j++) {
+          if(addWord(word,i,j,rowIncrement,colIncrement)) {
+            wordsToAdd.remove(index);
+            wordsAdded.add(word);
+          }
+        }
+      }
+//    Bestrowcol();
+//    int row = info[0];                      // This finds the best row and col to start on
+//    int col = info[1];
    }
-
+}
 
 // I use tutorialsPoint to check my code before testing it in any Driver!
 }
