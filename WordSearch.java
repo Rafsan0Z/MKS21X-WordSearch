@@ -159,19 +159,19 @@ public class WordSearch{
 }
 
 // I use tutorialsPoint to check my code before testing it in any Driver!
-}
 
 public static void main(String args[]) {
   int row = Integer.parseInt(args[0]);
-  int col = Integer.parseInt(agrs[1]);
+  int col = Integer.parseInt(args[1]);
   int fileName = args[2];
-  int RandSeed = Integer.parseInt(agrs[3]);
+  int RandSeed = Integer.parseInt(args[3]);
   boolean answer = false;
 
   if(args.length == 5 && args[4] == "key") {
     answer = true;
   }
 
-  WordSearch Block = new WordSearch(row,col,fileName,Randseed,key);
+  WordSearch Block = new WordSearch(row,col,fileName,Randseed,answer);
   toString();
+}
 }
