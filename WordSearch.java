@@ -40,6 +40,15 @@ public class WordSearch{
       }
     }
 
+    private void fillDatabase(fileName) {
+      File file = new File(fileName);
+      Scanner in = new Scanner(file);
+      while(in.hasNext()) {
+        String word = in.next();
+        wordtoAdd.add(word);
+    }
+  }
+
     public WordSearch(int rows, int cols, String fileName, int Randseed, boolean answer) {
       data = new char[rows][cols];
       clear();
@@ -48,6 +57,7 @@ public class WordSearch{
       randgen = new Random();
       info[0] = 0;
       info[1] = 0;
+      fillDatabase();
       addAllWords();
       if(!answer) {
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
