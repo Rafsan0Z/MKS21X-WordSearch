@@ -44,13 +44,17 @@ public class WordSearch{
     }
 
     private void fillDatabase(String fileName) {
+      while(in.hasNext()) {
         String word = in.next();
         wordsToAdd.add(word);
+      }
     }
 
     public WordSearch(int rows, int cols, String fileName, int Randseed, boolean answer){
       data = new char[rows][cols];
       clear();
+      wordsToAdd = new ArrayList<String>();
+      wordsAdded = new ArrayList<String>();
       if(Randseed == 0) {
         Random limit = new Random();
         seed = limit.nextInt();
@@ -153,6 +157,7 @@ public class WordSearch{
           if((addWord(word,i,j,1,1) || addWord(word,i,j,1,0)) || addWord(word,i,j,0,1)) {
             wordsToAdd.remove(index);
             wordsAdded.add(word);
+            break;
           }
         }
       }
