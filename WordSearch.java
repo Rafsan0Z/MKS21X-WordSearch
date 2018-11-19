@@ -138,15 +138,13 @@ public class WordSearch{
 
    }
    private void addAllWords() {
-    int rowIncrement = 1;
-    int colIncrement = 1;
     while(wordsToAdd.size() > 0) {
       int Length = wordsToAdd.size();         //
       int index = ListIndex(Length);          // This should be inside of a loop
       String word = wordsToAdd.get(index);    //
       for(int i = info[0]; i < data.legth; i++) {
         for(int j = info[1]; j < data[0].length; j++) {
-          if(addWord(word,i,j,rowIncrement,colIncrement)) {
+          if((addWord(word,i,j,1,1) || addWord(word,i,j,1,0)) || addWord(word,i,j,0,1)) {
             wordsToAdd.remove(index);
             wordsAdded.add(word);
           }
