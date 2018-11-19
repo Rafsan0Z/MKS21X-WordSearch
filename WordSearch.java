@@ -69,10 +69,13 @@ public class WordSearch{
         fillDatabase(fileName);
       }
       addAllWords();
-      if(!answer) {
-        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-        RandomLetters();
-      }
+//      if(!answer) {
+//        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+//        RandomLetters();
+//      }
+//      else {
+//
+//      }
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -148,13 +151,17 @@ public class WordSearch{
 
    }
    private void addAllWords() {
+     int rowIncrement = 1;
+     int colIncrement = 1;
+     int rowstart = 0;
+     int colstart = 0;
     while(wordsToAdd.size() > 0) {
       int Length = wordsToAdd.size();         //
       int index = ListIndex(Length);          // This should be inside of a loop
       String word = wordsToAdd.get(index);    //
-      for(int i = info[0]; i < data.length; i++) {
-        for(int j = info[1]; j < data[0].length; j++) {
-          if((addWord(word,i,j,1,1) || addWord(word,i,j,1,0)) || addWord(word,i,j,0,1)) {
+      for(int i = 0; i < data.length; i++) {
+        for(int j = 0; j < data[0].length; j++) {
+          if(addWord(word,i,j,rowIncrement,colIncrement)) {
             wordsToAdd.remove(index);
             wordsAdded.add(word);
             break;
