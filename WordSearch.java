@@ -147,8 +147,9 @@ public class WordSearch{
      return num;
    }
 
-   private void Bestrowcol(int[] rowcol) { // A method that returns the best row and col to start, to be Written!
-
+   private void changeStarts(int rowIncrement, int colIncrement) { // A method that resets the increment!
+     rowIncrement = Math.abs(randgen.nextInt()) % data.length;
+     colIncrement = Math.abs(randgen.nextInt()) % data[0].length;
    }
    private void addAllWords() {
      int rowIncrement = 1;
