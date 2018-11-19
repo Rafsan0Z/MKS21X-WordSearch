@@ -7,7 +7,6 @@ public class WordSearch{
     private char[][]data;
     private char[] alphabet;
     private int seed;
-    private int[]info = new int[2];
     private Random randgen;
     private File file;
     private Scanner in;
@@ -147,13 +146,13 @@ public class WordSearch{
      return num;
    }
 
-   private void changeStarts(int rowstart, int colstart) { // A method that resets the increment!
-     rowstart = Math.abs(randgen.nextInt()) % data.length;
-     colstart = Math.abs(randgen.nextInt()) % data[0].length;
+   private int changeStarts(int length) { // A method that resets the row and col position!
+     int start = Math.abs(randgen.nextInt()) % length;
+     return start;
    }
-   private void changeSteps(int rowIncrement, int colIncrement) {
-     rowIncrement = Math.abs(randgen.nextInt()) % data.length;
-     colIncrement = Math.abs(randgen.nextInt()) % data[0].length;
+   private int changeSteps() {
+     int increment = randgen.nextInt() % 2;
+     return increment;
    }
    private void addAllWords() {
      int count = 1000;
@@ -168,15 +167,16 @@ public class WordSearch{
       for(int i = 0; i < count; i++) {
       if(addWord(word,rowstart,colstart,rowIncrement,colIncrement)) {
         wordsAdded.add(word);
-        wordsToAdd.remove(index);
         i = count;
       }
       else {
-        changeSteps(rowIncrement,colIncrement);
-        changeStarts(rowstart,colstart);
-        count = 1000;
+        rowIncrement = changeSteps();
+        colIncrement = changeSteps();
+        rowstart = changeStarts(data.length);
+        colstart = changeStarts(data[0].length);
       }
    }
+   wordsToAdd.remove(index);
  }
 }
 // I use tutorialsPoint to check my code before testing it in any Driver!
