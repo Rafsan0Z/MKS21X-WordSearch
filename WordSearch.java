@@ -147,7 +147,11 @@ public class WordSearch{
      return num;
    }
 
-   private void changeStarts(int rowIncrement, int colIncrement) { // A method that resets the increment!
+   private void changeStarts(int rowstart, int colstart) { // A method that resets the increment!
+     rowstart = Math.abs(randgen.nextInt()) % data.length;
+     colstart = Math.abs(randgen.nextInt()) % data[0].length;
+   }
+   private void changeSteps(int rowIncrement, int colIncrement) {
      rowIncrement = Math.abs(randgen.nextInt()) % data.length;
      colIncrement = Math.abs(randgen.nextInt()) % data[0].length;
    }
@@ -159,22 +163,22 @@ public class WordSearch{
     while(wordsToAdd.size() > 0) {
       int Length = wordsToAdd.size();         //
       int index = ListIndex(Length);          // This should be inside of a loop
-      String word = wordsToAdd.get(index);    //
-      for(int i = 0; i < data.length; i++) {
-        for(int j = 0; j < data[0].length; j++) {
-          if(addWord(word,i,j,rowIncrement,colIncrement)) {
-            wordsToAdd.remove(index);
-            wordsAdded.add(word);
-            break;
-          }
-        }
+      String word = wordsToAdd.get(index);
+      for(int i = 0; i < count; i++) {
+      if(addWord(word,rowstart,colstart,rowIncrement,colIncrement)) {
+        wordsAdded(word);
+        i = count;
+      }
+      else {
+
       }
 //    Bestrowcol();
 //    int row = info[0];                      // This finds the best row and col to start on
 //    int col = info[1];
    }
 }
-
+}
+}
 // I use tutorialsPoint to check my code before testing it in any Driver!
 
 public static void main(String args[]) {
