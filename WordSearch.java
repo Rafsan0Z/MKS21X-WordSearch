@@ -62,8 +62,6 @@ public class WordSearch{
         seed = Randseed;
       }
       randgen = new Random(seed);
-      info[0] = 0;
-      info[1] = 0;
       if(!VarifyFile(fileName)) {
         fillDatabase(fileName);
       }
@@ -102,7 +100,7 @@ public class WordSearch{
         result += "| \n";
       }
       else{
-        result += data[i][j];
+        result += data[i][j] + " ";
       }
     }
   }
