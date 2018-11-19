@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class WordSearch{
     private char[][]data;
-    private char[][]alphabet;
+    private char[] alphabet;
     private int seed;
     private int[]info = new int[2];
     private Random randgen;
+    private File file;
+    private Scanner in;
     private ArrayList<String>wordsToAdd;
     private ArrayList<String>wordsAdded;
 
@@ -19,45 +21,49 @@ public class WordSearch{
      */
 
 // This method checks the file that the user inputs
-    private void VarifyFile(String fileName) {
+    private boolean VarifyFile(String fileName) {
       try{
-        File file = new File(fileName);
-        Scanner in = new Scanner(file);
-      } catch(IllegalArgumentException e) {
-        System.out.println("The File: " + fileName + "does not exist! Check your Directory!");
+        file = new File(fileName);
+        in = new Scanner(file);
+      } catch(FileNotFoundException e) {
+        return false;
       }
+      return true;
     }
 
 // This method inputs random letters where are blank spaces
     private void RandomLetters() {
       for(int i = 0; i < data.length; i++) {
         for(int j = 0; j < data[0].length; j++) {
-          if(data[i][j] = '_') {
+          if(data[i][j] == '_') {
             int place = ListIndex(27);
-            data[i][j] = alphabet(place);
+            data[i][j] = alphabet[place];
           }
         }
       }
     }
 
     private void fillDatabase(String fileName) {
-      File file = new File(fileName);
-      Scanner in = new Scanner(file);
-      while(in.hasNext()) {
         String word = in.next();
-        wordtoAdd.add(word);
+        wordsToAdd.add(word);
     }
-  }
 
-    public WordSearch(int rows, int cols, String fileName, int Randseed, boolean answer) {
+    public WordSearch(int rows, int cols, String fileName, int Randseed, boolean answer){
       data = new char[rows][cols];
       clear();
-      VarifyFile(fileName);
-      seed = Randseed;
-      randgen = new Random();
+      if(Randseed == 0) {
+        Random limit = new Random();
+        seed = limit.nextInt();
+      }
+      else {
+        seed = Randseed;
+      }
+      randgen = new Random(seed);
       info[0] = 0;
       info[1] = 0;
-      fillDatabase();
+      if(!VarifyFile(fileName)) {
+        fillDatabase(fileName);
+      }
       addAllWords();
       if(!answer) {
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
@@ -94,7 +100,7 @@ public class WordSearch{
       }
     }
   }
-  return result;
+    return result;
     }
 
    private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
@@ -142,7 +148,7 @@ public class WordSearch{
       int Length = wordsToAdd.size();         //
       int index = ListIndex(Length);          // This should be inside of a loop
       String word = wordsToAdd.get(index);    //
-      for(int i = info[0]; i < data.legth; i++) {
+      for(int i = info[0]; i < data.length; i++) {
         for(int j = info[1]; j < data[0].length; j++) {
           if((addWord(word,i,j,1,1) || addWord(word,i,j,1,0)) || addWord(word,i,j,0,1)) {
             wordsToAdd.remove(index);
@@ -161,7 +167,7 @@ public class WordSearch{
 public static void main(String args[]) {
   int row = Integer.parseInt(args[0]);
   int col = Integer.parseInt(args[1]);
-  int fileName = args[2];
+  String fileName = args[2];
   int RandSeed = Integer.parseInt(args[3]);
   boolean answer = false;
 
@@ -169,7 +175,7 @@ public static void main(String args[]) {
     answer = true;
   }
 
-  WordSearch Block = new WordSearch(row,col,fileName,Randseed,answer);
-  toString();
+  WordSearch Block = new WordSearch(row,col,fileName,RandSeed,answer);
+  System.out.println(Block);
 }
 }
