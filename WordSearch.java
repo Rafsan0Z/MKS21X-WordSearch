@@ -156,6 +156,7 @@ public class WordSearch{
      colIncrement = Math.abs(randgen.nextInt()) % data[0].length;
    }
    private void addAllWords() {
+     int count = 1000;
      int rowIncrement = 1;
      int colIncrement = 1;
      int rowstart = 0;
@@ -166,18 +167,17 @@ public class WordSearch{
       String word = wordsToAdd.get(index);
       for(int i = 0; i < count; i++) {
       if(addWord(word,rowstart,colstart,rowIncrement,colIncrement)) {
-        wordsAdded(word);
+        wordsAdded.add(word);
+        wordsToAdd.remove(index);
         i = count;
       }
       else {
-
+        changeSteps(rowIncrement,colIncrement);
+        changeStarts(rowstart,colstart);
+        count = 1000;
       }
-//    Bestrowcol();
-//    int row = info[0];                      // This finds the best row and col to start on
-//    int col = info[1];
    }
-}
-}
+ }
 }
 // I use tutorialsPoint to check my code before testing it in any Driver!
 
