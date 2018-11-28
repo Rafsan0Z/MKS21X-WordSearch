@@ -20,7 +20,7 @@ public class WordSearch{
      */
 
 // This method checks the file that the user inputs
-    private boolean VarifyFile(String fileName) {
+/*    private boolean VarifyFile(String fileName) {
       try{
         file = new File(fileName);
         in = new Scanner(file);
@@ -28,7 +28,7 @@ public class WordSearch{
         return false;
       }
       return true;
-    }
+    } */
 
 // This method inputs random letters where are blank spaces
     private void RandomLetters() {
@@ -42,12 +42,12 @@ public class WordSearch{
       }
     }
 
-    private void fillDatabase(String fileName) {
+/*    private void fillDatabase(String fileName) {
       while(in.hasNext()) {
         String word = in.next();
         wordsToAdd.add(word);
       }
-    }
+    } */
 
     public WordSearch(int rows, int cols, String fileName, int Randseed, boolean answer){
       data = new char[rows][cols];
@@ -62,8 +62,16 @@ public class WordSearch{
         seed = Randseed;
       }
       randgen = new Random(seed);
-      if(!VarifyFile(fileName)) {
-        fillDatabase(fileName);
+      try{
+        file = new File(fileName);
+        in = new Scanner(file);
+      } catch(FileNotFoundException e) {
+        System.out.println("File does not exist!");
+        System.exit(1);
+      }
+      while(in.hasNext()) {
+        String word = in.next();
+        wordsToAdd.add(word);
       }
       addAllWords();
 //      if(!answer) {
@@ -76,7 +84,7 @@ public class WordSearch{
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
-    private void clear(){
+    public void clear(){
       for(int i = 0; i < data.length; i++) {
         for(int j = 0; j < data[i].length; j++) {
           data[i][j] = '_';
@@ -107,16 +115,18 @@ public class WordSearch{
     return result;
     }
 
-   private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
+   public boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
+     int len = word.length();
      if(rowIncrement == 0 && colIncrement == 0) {return false;}
-     if(word == "") {return false;}
-     int Length = word.length();
-     int rowendpoint = (Length-1)*rowIncrement;
-     int colendpoint = (Length-1)*colIncrement;
+     if(len == 0) {return false;}
+     if((rowIncrement == 1 && data.length < row + len) || (colIncrement == 1 && data[row].length < len + col)) {return false;}
+     if((rowIncrement == -1 && row + 1 <len) || (colIncrement == -1 && col + 1 < len)) {return false;}
+     int rowendpoint = (len-1)*rowIncrement;
+     int colendpoint = (len-1)*colIncrement;
      int currentrow = row;
      int currentcol = col;
      if(rowendpoint > data.length || colendpoint > data[0].length) {return false;}
-     for(int i = 0 ; i < Length; i++) {
+     for(int i = 0 ; i < len && currentcol < data.length && currentrow < data[0].length; i++) {
        char letter = word.charAt(i);
        if(data[currentrow][currentcol] != letter && data[currentrow][currentcol] != '_') {return false;}
        currentrow++;
@@ -124,7 +134,7 @@ public class WordSearch{
      }
      currentcol = col;
      currentrow = row;
-     for(int j = 0; j < Length; j++) {
+     for(int j = 0; j < len && currentcol < data.length && currentrow < data[0].length; j++) {
        char letter = word.charAt(j);
        data[currentrow][currentcol] = letter;
        currentcol++;
@@ -136,12 +146,8 @@ public class WordSearch{
    }
 
 // This function randomly choses a word from the words not yet added!
-   private int ListIndex(int length) {
-     int num = 0;
-     for(int i = 0; i < length - 1; i++) {
-       num += Math.abs(randgen.nextInt() % 2);
-     }
-     return num;
+   public int ListIndex(int length) {
+     return randgen.nextInt(length);
    }
 
    private int changeStarts(int length) { // A method that resets the row and col position!
@@ -152,7 +158,7 @@ public class WordSearch{
      int increment = randgen.nextInt() % 2;
      return increment;
    }
-   private void addAllWords() {
+   public void addAllWords() {
      int count = 1000;
      int rowIncrement = 1;
      int colIncrement = 1;
@@ -160,7 +166,7 @@ public class WordSearch{
      int colstart = 0;
     while(wordsToAdd.size() > 0) {
       int Length = wordsToAdd.size();         //
-      int index = ListIndex(Length);          // This should be inside of a loop
+      int index = randgen.nextInt(Length);         // This should be inside of a loop
       String word = wordsToAdd.get(index);
       for(int i = 0; i < count; i++) {
       if(addWord(word,rowstart,colstart,rowIncrement,colIncrement)) {
@@ -183,8 +189,17 @@ public static void main(String args[]) {
   int row = Integer.parseInt(args[0]);
   int col = Integer.parseInt(args[1]);
   String fileName = args[2];
-  int RandSeed = Integer.parseInt(args[3]);
+  int RandSeed = 0;
   boolean answer = false;
+
+  if(args.length == 4) {
+    RandSeed = Integer.parseInt(args[3]);
+  }
+
+  if(args.length == 5 && args[4] != "key") {
+    System.out.println("Invalid input for answer!");
+    System.exit(1);
+  }
 
   if(args.length == 5 && args[4] == "key") {
     answer = true;
